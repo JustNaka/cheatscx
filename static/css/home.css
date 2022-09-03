@@ -17,6 +17,13 @@ body {
     padding-right: 5px;
 }
 
+.version{
+    position: fixed !important;
+    left: 30px;
+    bottom: 30px;
+}
+
+
 /* NAVBAR */
 .navbar {
     background-color: transparent;
@@ -67,12 +74,13 @@ body {
 .navlink-special {
     background-image: linear-gradient(to right top, #593d9b, #4b2f95, #3b218f, #271289, #050083);
     margin-left: 50px !important;
+    transition: all 0.2s linear;
 }
 
 .navlink-special:hover {
     color: #4db6b9;
-    -webkit-box-shadow: 0px 0px 16px 3px #00A4FF;
-    box-shadow: 0px 0px 16px 3px #00A4FF;
+    -webkit-box-shadow: 0px 0px 16px 3px #862ea7;
+    box-shadow: 0px 0px 16px 3px #862ea7;
     transition: all 0.1s linear;
 }
 
@@ -124,8 +132,8 @@ body {
 }
 
 .col-gif svg {
-    height: 450px;
-    transform: translate(10%, 0%);
+    height: 650px;
+    transform: translate(10%, -5%);
 }
 
 .home_title {
@@ -249,20 +257,27 @@ body {
     align-content: center !important;
     justify-content: center !important;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 40px;
 }
 
 .benefit {
     flex: 1 1 400px !important;
     border: transparent;
     border-radius: 30px;
-    -webkit-box-shadow: 0px 0px 20px 7px rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 0px 20px 7px rgba(255, 255, 255, 0.5);
     max-width: 300px;
-    background-color: white;
+    background-color: #18181b;
     display: flex;
     flex-direction: row !important;
     padding: 30px 40px 30px 40px;
+    color: white;
+}
+
+.benefit:hover {
+    -webkit-box-shadow: 0px 0px 16px 3px #521c66;
+    box-shadow: 0px 0px 16px 3px #521c66;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.05);
+    transition: all 0.2s linear;
 }
 
 .benefit div .bi {
@@ -322,7 +337,7 @@ body {
     align-content: center !important;
     justify-content: center !important;
     flex-wrap: wrap !important;
-    gap: 20px !important;
+    gap: 30px !important;
 }
 
 .product {
@@ -366,7 +381,7 @@ body {
     color: white;
     border: 2px solid #303032;
     border-radius: 20px;
-    width: 200px;
+    width: 150px;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0%);

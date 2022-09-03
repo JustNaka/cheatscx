@@ -9,6 +9,10 @@
 {% block body %}
 <div class="content">
 
+    <div class="version fixed-bottom">
+        <button type="button" class="btn btn-primary" id="liveToastBtn">Ver. 1.1 03/09 18:00</button>
+    </div>
+
     <header>
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
@@ -41,7 +45,7 @@
 
     <section id="home">
         <div id="particles-js">
-            <img src="static/imgs/bg.svg" alt="Background" class="home_backgrownd_svg">
+            <img src="static/imgs/bg.png" alt="Background" class="home_backgrownd_svg">
             <div class="home_container container-fluid">
                 <div class="col-text">
                     <p class="home_title">
@@ -647,42 +651,42 @@
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
                 <div class="product">
                     <img class="product_img" src="static/imgs/gta_thumbnail.png" alt="">
                     <p class="product_title">GTA V</p>
-                    <button class="product_status_btn">Current status: </button>
+                    <button class="product_status_btn">View All</button>
                 </div>
             </div>
         </div>
@@ -694,35 +698,47 @@
             <p class="faq_title">Faq</p>
             <div class="faq_container container">
                 <div class="faq_item">
-                    <button class="item_btn item_btn1" type="button" onclick="changeIconFaq('.baf_1'); changeBorderFaq('.item_btn1')" data-bs-toggle="collapse"
+                    <button class="item_btn item_btn1" type="button"
+                        onclick="changeIconFaq('.baf_1'); changeBorderFaq('.item_btn1')" data-bs-toggle="collapse"
                         data-bs-target="#collapsefaq" aria-expanded="false" aria-controls="collapsefaq">
-                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i class="bi button_arrow_faq baf_1 bi-chevron-down"></i>
+                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i
+                            class="bi button_arrow_faq baf_1 bi-chevron-down"></i>
                     </button>
                     <div class="collapse collapse_faq" id="collapsefaq">
                         <div class="card card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor, nisi odio porta justo, in lacinia neque sapien vel diam.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna
+                            volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor,
+                            nisi odio porta justo, in lacinia neque sapien vel diam.
                         </div>
                     </div>
                 </div>
                 <div class="faq_item">
-                    <button class="item_btn item_btn2" type="button" onclick="changeIconFaq('.baf_2'); changeBorderFaq('.item_btn2')" data-bs-toggle="collapse"
+                    <button class="item_btn item_btn2" type="button"
+                        onclick="changeIconFaq('.baf_2'); changeBorderFaq('.item_btn2')" data-bs-toggle="collapse"
                         data-bs-target="#collapsefaq2" aria-expanded="false" aria-controls="collapsefaq2">
-                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i class="bi button_arrow_faq baf_2 bi-chevron-down"></i>
+                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i
+                            class="bi button_arrow_faq baf_2 bi-chevron-down"></i>
                     </button>
                     <div class="collapse collapse_faq" id="collapsefaq2">
                         <div class="card card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor, nisi odio porta justo, in lacinia neque sapien vel diam.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna
+                            volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor,
+                            nisi odio porta justo, in lacinia neque sapien vel diam.
                         </div>
                     </div>
                 </div>
                 <div class="faq_item">
-                    <button class="item_btn item_btn3" type="button" onclick="changeIconFaq('.baf_3'); changeBorderFaq('.item_btn3')" data-bs-toggle="collapse"
+                    <button class="item_btn item_btn3" type="button"
+                        onclick="changeIconFaq('.baf_3'); changeBorderFaq('.item_btn3')" data-bs-toggle="collapse"
                         data-bs-target="#collapsefaq3" aria-expanded="false" aria-controls="collapsefaq3">
-                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i class="bi button_arrow_faq baf_3 bi-chevron-down"></i>
+                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i
+                            class="bi button_arrow_faq baf_3 bi-chevron-down"></i>
                     </button>
                     <div class="collapse collapse_faq" id="collapsefaq3">
                         <div class="card card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor, nisi odio porta justo, in lacinia neque sapien vel diam.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna
+                            volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor,
+                            nisi odio porta justo, in lacinia neque sapien vel diam.
                         </div>
                     </div>
                 </div>
@@ -736,7 +752,7 @@
             <p class="footer_text">Copyright © 2022 Hack.solution All rights reserved</p>
         </div>
     </footer>
-    
+
     <script>
         const navbar = document.querySelector('.navbar');
         window.onscroll = () => {
@@ -747,22 +763,22 @@
             }
         };
 
-        function changeIconFaq(el){
+        function changeIconFaq(el) {
             var element = document.querySelector(el);
-            if(element.classList.contains("bi-chevron-down")){
+            if (element.classList.contains("bi-chevron-down")) {
                 element.classList.add('bi-chevron-up');
                 element.classList.remove('bi-chevron-down');
-            }else{
+            } else {
                 element.classList.add('bi-chevron-down');
                 element.classList.remove('bi-chevron-up');
             }
         }
 
-        function changeBorderFaq(el){
+        function changeBorderFaq(el) {
             var element = document.querySelector(el);
-            if(element.classList.contains("opened")){
+            if (element.classList.contains("opened")) {
                 element.classList.remove('opened');
-            }else{
+            } else {
                 element.classList.add('opened');
             }
         }
