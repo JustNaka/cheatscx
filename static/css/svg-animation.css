@@ -2,37 +2,37 @@ svg#freepik_stories-hacker:not(.animated) .animable {
     opacity: 0;
 }
 
-svg#freepik_stories-hacker.animated #freepik--background-simple--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--background-simple--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideRight;
     animation-delay: 0s;
 }
 
-svg#freepik_stories-hacker.animated #freepik--Lamp--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--Lamp--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) lightSpeedLeft, 6s Infinite linear wind;
     animation-delay: 0s, 1s;
 }
 
-svg#freepik_stories-hacker.animated #freepik--Icons--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--Icons--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomOut, 3s Infinite linear floating;
     animation-delay: 0s, 1s;
 }
 
-svg#freepik_stories-hacker.animated #freepik--device-2--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--device-2--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomIn;
     animation-delay: 0s;
 }
 
-svg#freepik_stories-hacker.animated #freepik--Character--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--Character--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp, 3s Infinite linear shake;
     animation-delay: 0s, 1s;
 }
 
-svg#freepik_stories-hacker.animated #freepik--device-1--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--device-1--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) zoomIn;
     animation-delay: 0s;
 }
 
-svg#freepik_stories-hacker.animated #freepik--Table--inject-7 {
+svg#freepik_stories-hacker.animated #freepik--Table--inject-2 {
     animation: 1s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp;
     animation-delay: 0s;
 }
