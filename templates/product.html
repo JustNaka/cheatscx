@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cheat.cx | {{ product.name }}</title>
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/product.css">
+<link rel="stylesheet" media="screen" href="/static/css/style.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block body %}
+<div class="content">
+
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><b><i>CHEAT.SX</i></b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse centered" id="navbarNavAltMarkup">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link navlink-special"><i class="bi bi-discord"></i> Discord</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <section id="product">
+        <div class="product_container">
+            <p class="product_title">{{ product.name }}</p>
+            <div class="screenshot_container">
+                <p><i class="bi bi-images"></i> Screenshot</p>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="/static/imgs/gta.png" alt=""></div>
+                        <div class="swiper-slide"><img src="/static/imgs/apex.png" alt=""></div>
+                        <div class="swiper-slide"><img src="/static/imgs/cycle.png" alt=""></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="centered">
+            <p class="footer_text">Copyright © 2022 Cheat.cx All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 200) {
+                navbar.classList.add('navbar-active');
+            } else {
+                navbar.classList.remove('navbar-active');
+            }
+        };
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+</div>
+{% endblock %}

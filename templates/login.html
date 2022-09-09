@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cheat.cx | Login</title>
+<link rel="stylesheet" href="/static/css/common.css">
+{% endblock %}
+
+{% block body %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    body {
+        background-color: #0d0d0f;
+    }
+
+    .login {
+        background-color: #5a1f6b;
+        border-radius: 50px;
+        padding: 50px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+    }
+
+    .login h1 {
+        font-family: 'Work Sans';
+        font-size: 28pt;
+        color: white;
+        font-weight: 600;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    .login p {
+        font-family: 'Work Sans';
+        font-size: 15pt;
+        color: white;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+        text-align: start !important;
+        margin-left: 10px;
+    }
+
+    input {
+        border-radius: 10px;
+        margin-bottom: 20px;
+        margin-top: 5px;
+        border: 2px solid transparent;
+    }
+
+    input::placeholder {
+        font-family: 'Work Sans';
+        font-size: 12pt;
+        font-weight: 500;
+    }
+
+    .submit{
+        margin-bottom: 0px;
+        font-family: 'Work Sans';
+        font-size: 12pt;
+        font-weight: 500;
+        width:  80px;
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><b><i>CHEAT.SX</i></b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse centered" id="navbarNavAltMarkup">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link navlink-special"><i class="bi bi-discord"></i> Discord</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="login">
+    <h1>LOGIN</h1>
+
+    <form method="POST">
+        <p>Username</p>
+        <input type="text" name="username" id="username" placeholder="  Username">
+        <br>
+        <p>Password</p>
+        <input type="password" name="password" id="password" placeholder="  Password">
+        <br>
+        <input class="submit" type="submit" value="Invio">
+    </form>
+</div>
+{% endblock %}

@@ -1,29 +1,30 @@
-from app import Category, Products, db
+from app import Category, Products, Users, db
 
 category = [
-    Category(id="1", name="GTA V", image_path="static/imgs/gta_thumbnail.png", cat_name="gta"), 
-    Category(id="2", name="DAYZ", image_path="static/imgs/gta_thumbnail.png", cat_name="dayz"),
-    Category(id="3", name="ARMA 3", image_path="static/imgs/gta_thumbnail.png", cat_name="arma"),
-    Category(id="4", name="TABG", image_path="static/imgs/gta_thumbnail.png", cat_name="tabg")
+    Category(id="1", name="GTA V", image_path="static/imgs/gta.png", cat_name="gta", starting_price="10", type="cat"), 
+    Category(id="2", name="APEX", image_path="static/imgs/apex.png", cat_name="apex", starting_price="10", type="cat"),
+    Category(id="3", name="TARKOV", image_path="static/imgs/tarkov.png", cat_name="tarkov", starting_price="10", type="cat"),
+    Category(id="4", name="DAYZ", image_path="static/imgs/dayz.png", cat_name="dayz", starting_price="10", type="cat"),
+    Category(id="5", name="DEAD BY DAYLIGHT", image_path="static/imgs/dead.png", cat_name="dead", starting_price="10", type="cat"),
+    Category(id="6", name="VALORANT", image_path="static/imgs/valorant.png", cat_name="valorant", starting_price="10", type="cat"),
+    Category(id="7", name="FIVEM", image_path="static/imgs/fivem.png", cat_name="fivem", starting_price="10", type="cat"),
+    Category(id="8", name="CYCLE", image_path="static/imgs/cycle.png", cat_name="cycle", starting_price="10", type="cat"),
 ]
 
 products = [
-    Products(id="1", cat_name="gta", name="GTA V_1", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="2", cat_name="gta", name="GTA V_2", image_path="static/imgs/gta_thumbnail.png"), 
-    Products(id="3", cat_name="gta", name="GTA V_3", image_path="static/imgs/gta_thumbnail.png"), 
-    Products(id="4", cat_name="gta", name="GTA V_4", image_path="static/imgs/gta_thumbnail.png"), 
-    Products(id="5", cat_name="dayz", name="DAYZ_1", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="6", cat_name="dayz", name="DAYZ_2", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="7", cat_name="dayz", name="DAYZ_3", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="8", cat_name="dayz", name="DAYZ_4", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="9", cat_name="arma", name="ARMA 3_1", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="10", cat_name="arma", name="ARMA 3_2", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="11", cat_name="arma", name="ARMA 3_3", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="12", cat_name="arma", name="ARMA 3_4", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="13", cat_name="tabg", name="TABG_1", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="14", cat_name="tabg", name="TABG_2", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="15", cat_name="tabg", name="TABG_3", image_path="static/imgs/gta_thumbnail.png"),
-    Products(id="16", cat_name="tabg", name="TABG_4", image_path="static/imgs/gta_thumbnail.png")
+    Products(id="1", cat_name="gta", name="GTA V_1", image_path="static/imgs/gta.png", type="product"),
+    Products(id="2", cat_name="gta", name="GTA V_2", image_path="static/imgs/gta.png", type="product"), 
+    Products(id="3", cat_name="gta", name="GTA V_3", image_path="static/imgs/gta.png", type="product"), 
+    Products(id="4", cat_name="gta", name="GTA V_4", image_path="static/imgs/gta.png", type="product"), 
+    Products(id="5", cat_name="apex", name="DAYZ_1", image_path="static/imgs/apex.png", type="product"),
+    Products(id="6", cat_name="apex", name="DAYZ_2", image_path="static/imgs/apex.png", type="product"),
+    Products(id="7", cat_name="apex", name="DAYZ_3", image_path="static/imgs/apex.png", type="product"),
+    Products(id="8", cat_name="apex", name="DAYZ_4", image_path="static/imgs/apex.png", type="product")
+]
+
+
+users = [
+    Users(id="1", username="test", password="suca")
 ]
 
 for i in products:

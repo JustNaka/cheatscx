@@ -1,0 +1,107 @@
+.centered {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    align-content: center !important;
+    justify-content: center !important;
+}
+
+.bi {
+    padding-right: 5px;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: transparent;
+    height: 100px;
+    transition: all 0.2 linear;
+}
+
+.navbar-active {
+    background-color: #0d0d0f;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    transition: all 0.2s linear;
+}
+
+.navbar:not(.navbar-active) {
+    transition: all 0.2s linear;
+}
+
+.navbar-brand {
+    transition: all 0.2s linear;
+    font-family: "Work Sans";
+    color: white;
+    font-size: 39px;
+    font-weight: normal;
+    padding: 0px 0px 0px 20%;
+    margin: 0px;
+}
+
+.navbar-brand:hover {
+    transition: all 0.2s linear;
+    color: #593d9b;
+}
+
+.nav-link {
+    transition: all 0.2s linear;
+    border-radius: 40px;
+    padding: 20px 30px 20px 30px !important;
+    font-family: "Work Sans";
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.nav-link:hover {
+    transition: all 0.2s linear;
+    color: #593d9b;
+}
+
+.navlink-special {
+    background-image: linear-gradient(to right top, #593d9b, #4b2f95, #3b218f, #271289, #050083);
+    margin-left: 50px !important;
+    transition: all 0.2s linear;
+}
+
+.navlink-special:hover {
+    color: #d8cded;
+    -webkit-box-shadow: 0px 0px 16px 3px #862ea7;
+    box-shadow: 0px 0px 16px 3px #862ea7;
+    transition: all 0.1s linear;
+}
+
+.navbar-toggler {
+    border: 0px;
+    color: transparent;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+@media only screen and (max-width: 992px) {
+    .collapse:not(.show) {
+        display: none !important;
+    }
+}
+
+/* END NAVBAR */
+
+
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #303032;
+}
+
+.footer_text {
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    color: white;
+    font-weight: 400;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 0px;
+}
+
+/* END FOOTER */

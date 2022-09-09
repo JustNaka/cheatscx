@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #0d0d0f;
+}
+
+
+.product_container {
+    margin-top: 150px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    align-content: center !important;
+    justify-content: center !important;
+}
+
+
+.product_title {
+    font-family: 'Work Sans';
+    font-size: 21pt;
+    color: white;
+    font-weight: 600;
+    text-align: start !important;
+}
+
+
+.swiper {
+    width: 600px;
+    height: 300px;
+}
+
+.swiper-slide img{
+    height: 100%;
+    width: auto;
+    object-fit: cover !important;
+}
