@@ -14,6 +14,9 @@ body {
     justify-content: center !important;
 }
 
+.product_image{
+    width: 500px;
+}
 
 .product_title {
     font-family: 'Work Sans';
@@ -25,12 +28,23 @@ body {
 
 
 .swiper {
-    width: 600px;
-    height: 300px;
+    width: 700px;
+    height: 400px;
+    position: relative;
+    margin-bottom: 50px;
 }
 
 .swiper-slide img{
-    height: 100%;
-    width: auto;
-    object-fit: cover !important;
+    width: 700px;
+    height: 400px;
+    object-fit: scale-down !important;
+}
+
+.swiper-button-next, .swiper-button-prev{
+    color: white !important;
+}
+
+.swiper-pagination{
+    position: absolute !important;
+    bottom: 60px !important;
 }

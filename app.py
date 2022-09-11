@@ -1,7 +1,8 @@
 from ast import NamedExpr
 from math import prod
-from flask import abort, Flask, render_template, url_for, request, redirect, session, g
+from flask import abort, Flask, render_template, url_for, request, redirect, session, flash, g
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import JSON
 
 app = Flask(__name__)
 app.secret_key = "Equindimarlenatornaacasa"
@@ -44,10 +45,12 @@ class Products(db.Model):
     name = db.Column(db.Text, nullable=False)
     image_path = db.Column(db.Text, nullable=False)
     type = db.Column(db.Text, nullable=False)
+    screens = db.Column(JSON)
 
     def __repr__(self):
         return '<Products %r>' % self.id
 
+    
 class Users(db.Model):
     __bind_key__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -80,8 +83,6 @@ def product(prod_name):
     return render_template("product.html", product=all_prod)
 
 
-
-
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -95,20 +96,57 @@ def login():
         for x in all_users:
             if x != None and x.password == password:
                 session['user_id'] = x.id
-                return redirect(url_for('profile'))
+                return redirect(url_for('admin'))
         
         return redirect(url_for('login'))       
         
     return render_template("login.html")
 
 
-@app.route('/profile')
-def profile():
+@app.route('/admin', methods=['POST', 'GET'])
+def admin():
     if not g.user:
         abort(403)
-    return render_template("profile.html")
+    
+    category = Category.query.all()
+    products = Products.query.all()
+    
+    
+    if request.method == 'POST':
+        new_id = request.form["new_id"]
+        new_name = request.form["new_name"]
+        new_cat_name = request.form["new_cat_name"]
+        new_starting_price = request.form["new_starting_price"]
+        new_image_path = request.form["new_image_path"]
+        
+
+        if new_id == "" or new_name == "" or new_cat_name == "" or new_starting_price == "" or new_image_path == "":
+            return redirect(url_for('admin'))
+        else:
+            db.session.add(Category(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, starting_price=new_starting_price, type="cat"))
+            db.session.commit()
+            
+        return redirect(url_for('admin'))
+            
+    return render_template("admin.html", all_category=category, all_products=products)
 
 
+@app.route('/deladmin/<int:delc>')
+def deladmin(delc):
+    if not g.user:
+        abort(403)
+    
+    category = Category.query.all()
+    products = Products.query.all()
+    
+    del_category = Category.query.filter_by(id=delc).first()
+    
+    if del_category:
+        msg_text = 'Elemento %s rimosso' % str(del_category)
+        db.session.delete(del_category)
+        db.session.commit()
+        flash(msg_text)
+    return redirect(url_for('admin'))
 
 
 

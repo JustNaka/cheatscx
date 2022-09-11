@@ -44,14 +44,23 @@
 
     <section id="product">
         <div class="product_container">
-            <p class="product_title">{{ product.name }}</p>
+
+            <div class="row">
+                <div class="col"> <!--{{product.image_path}}-->
+                    <img src="https://ring-1.io/uploads/apex-legends-62d9b883a2e26373326806.jpg" alt="{{product.name}}" class="product_image">
+                </div>
+                <div class="col">
+                    <p class="product_title">{{ product.name }}</p>
+                </div>
+            </div>
+
             <div class="screenshot_container">
                 <p><i class="bi bi-images"></i> Screenshot</p>
                 <div class="swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="/static/imgs/gta.png" alt=""></div>
-                        <div class="swiper-slide"><img src="/static/imgs/apex.png" alt=""></div>
-                        <div class="swiper-slide"><img src="/static/imgs/cycle.png" alt=""></div>
+                        {% for i in product.screens %} <!--{{product.screens[i]}}-->
+                        <div class="swiper-slide"><img src="https://ring-1.io/uploads/apex-legends-62d9b883a2e26373326806.jpg" alt=""></div>
+                        {% endfor %}
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-prev"></div>

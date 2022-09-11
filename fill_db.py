@@ -12,14 +12,14 @@ category = [
 ]
 
 products = [
-    Products(id="1", cat_name="gta", name="GTA V_1", image_path="static/imgs/gta.png", type="product"),
-    Products(id="2", cat_name="gta", name="GTA V_2", image_path="static/imgs/gta.png", type="product"), 
-    Products(id="3", cat_name="gta", name="GTA V_3", image_path="static/imgs/gta.png", type="product"), 
-    Products(id="4", cat_name="gta", name="GTA V_4", image_path="static/imgs/gta.png", type="product"), 
-    Products(id="5", cat_name="apex", name="DAYZ_1", image_path="static/imgs/apex.png", type="product"),
-    Products(id="6", cat_name="apex", name="DAYZ_2", image_path="static/imgs/apex.png", type="product"),
-    Products(id="7", cat_name="apex", name="DAYZ_3", image_path="static/imgs/apex.png", type="product"),
-    Products(id="8", cat_name="apex", name="DAYZ_4", image_path="static/imgs/apex.png", type="product")
+    Products(id="1", cat_name="gta", name="GTA V_1", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
+    Products(id="2", cat_name="gta", name="GTA V_2", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}), 
+    Products(id="3", cat_name="gta", name="GTA V_3", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}), 
+    Products(id="4", cat_name="gta", name="GTA V_4", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}), 
+    Products(id="5", cat_name="apex", name="DAYZ_1", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
+    Products(id="6", cat_name="apex", name="DAYZ_2", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
+    Products(id="7", cat_name="apex", name="DAYZ_3", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
+    Products(id="8", cat_name="apex", name="DAYZ_4", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"})
 ]
 
 

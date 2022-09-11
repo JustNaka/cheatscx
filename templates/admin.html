@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+<title>Cheat.cx | Admin</title>
+{% endblock %}
+
+{% block body %}
+<div class="head centered">
+    <h1 class="head_title">Admin Page</h1>
+</div>
+
+<div class="category ">
+    <p class="category_title">Categorie</p>
+    <table class="category_table">
+        <tr class="table_head">
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Nome Categoria</th>
+            <th>Prezzo di partenza</th>
+            <th>Path Image</th>
+            <th>Action</th>
+        </tr>
+
+        {% for i in all_category %}
+        <tr>
+            <th>{{i.id}}</th>
+            <th>{{i.name}}</th>
+            <th>{{i.cat_name}}</th>
+            <th>{{i.starting_price}}</th>
+            <th>{{i.image_path}}</th>
+            <th><a href="{{ url_for('deladmin', delc=i.id) }}"
+                    onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');"
+                    title="Cancella elemento">
+                    <i class="bi bi-trash"></i></a></th>
+        </tr>
+        {% endfor %}
+        <form action="" method="POST">
+            <tr class="table_add">
+                <th><input type="text" name="new_id" placeholder="Product Id" value="{{ request.form['id'] }}"></input></th>
+                <th><input type="text" name="new_name" placeholder="Product Name"></input></th>
+                <th><input type="text" name="new_cat_name" placeholder="Product Cat Name"></input></th>
+                <th><input type="text" name="new_starting_price" placeholder="Product Starting Price"></input></th>
+                <th><input type="text" name="new_image_path" placeholder="Product Image Path"></input></th>
+                <th><button class="add_element" type="submit"><i class="bi bi-plus-circle"></i></button></th>
+            </tr>
+        </form>
+    </table>
+
+</div>
+
+
+
+{% endblock %}
