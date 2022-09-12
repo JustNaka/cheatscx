@@ -1,5 +1,6 @@
 from ast import NamedExpr
 from math import prod
+from sqlite3 import enable_shared_cache
 from flask import abort, Flask, render_template, url_for, request, redirect, session, flash, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
@@ -49,8 +50,7 @@ class Products(db.Model):
 
     def __repr__(self):
         return '<Products %r>' % self.id
-
-    
+ 
 class Users(db.Model):
     __bind_key__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -113,19 +113,68 @@ def admin():
     
     
     if request.method == 'POST':
-        new_id = request.form["new_id"]
-        new_name = request.form["new_name"]
-        new_cat_name = request.form["new_cat_name"]
-        new_starting_price = request.form["new_starting_price"]
-        new_image_path = request.form["new_image_path"]
-        
-
-        if new_id == "" or new_name == "" or new_cat_name == "" or new_starting_price == "" or new_image_path == "":
-            return redirect(url_for('admin'))
-        else:
-            db.session.add(Category(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, starting_price=new_starting_price, type="cat"))
-            db.session.commit()
+        if 'add_element' in request.form:
+            if request.form["type"] == "cat":
+                new_id = request.form["new_id"]
+                new_name = request.form["new_name"]
+                new_cat_name = request.form["new_cat_name"]
+                new_starting_price = request.form["new_starting_price"]
+                new_image_path = request.form["new_image_path"]
+                
+                if new_id == "" or new_name == "" or new_cat_name == "" or new_starting_price == "" or new_image_path == "":
+                    return redirect(url_for('admin'))
+                else:
+                    db.session.add(Category(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, starting_price=new_starting_price, type="cat"))
+                    db.session.commit()
+            elif request.form["type"] == "prod":
+                new_id = request.form["new_id"]
+                new_name = request.form["new_name"]
+                new_cat_name = request.form["new_cat_name"]
+                new_screens = request.form["new_screens"]
+                new_image_path = request.form["new_image_path"]
+                
+                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "":
+                    return redirect(url_for('admin'))
+                else:
+                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, type="cat"))
+                    db.session.commit()
+        elif 'edit_element' in request.form:
+            if request.form["type"] == "cat":
+                edit_id = request.form["edit_id"]
+                edit_name = request.form["edit_name"]
+                edit_cat_name = request.form["edit_cat_name"]
+                edit_starting_price = request.form["edit_starting_price"]
+                edit_image_path = request.form["edit_image_path"]
             
+                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_starting_price == "" or edit_image_path == "":
+                    return redirect(url_for('admin'))
+                else:
+                    cat = Category.query.filter_by(id=request.form["edit_element"]).first()
+                    cat.id = edit_id
+                    cat.name = edit_name
+                    cat.cat_name = edit_cat_name
+                    cat.starting_price = edit_starting_price
+                    cat.image_path = edit_image_path
+                    db.session.commit()
+            elif request.form["type"] == "prod":
+                edit_id = request.form["edit_id"]
+                edit_name = request.form["edit_name"]
+                edit_cat_name = request.form["edit_cat_name"]
+                edit_screens = request.form["edit_screens"]
+                edit_image_path = request.form["edit_image_path"]
+            
+                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "":
+                    return redirect(url_for('admin'))
+                else:
+                    cat = Products.query.filter_by(id=request.form["edit_element"]).first()
+                    cat.id = edit_id
+                    cat.name = edit_name
+                    cat.cat_name = edit_cat_name
+                    cat.screens = edit_screens
+                    cat.image_path = edit_image_path
+                    db.session.commit()
+            
+                
         return redirect(url_for('admin'))
             
     return render_template("admin.html", all_category=category, all_products=products)

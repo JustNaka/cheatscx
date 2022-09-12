@@ -11,10 +11,11 @@
     <h1 class="head_title">Admin Page</h1>
 </div>
 
-<div class="category ">
+<div id="category" class="category">
     <p class="category_title">Categorie</p>
     <table class="category_table">
         <tr class="table_head">
+            <th></th>
             <th>ID</th>
             <th>Nome</th>
             <th>Nome Categoria</th>
@@ -25,31 +26,80 @@
 
         {% for i in all_category %}
         <tr>
-            <th>{{i.id}}</th>
-            <th>{{i.name}}</th>
-            <th>{{i.cat_name}}</th>
-            <th>{{i.starting_price}}</th>
-            <th>{{i.image_path}}</th>
-            <th><a href="{{ url_for('deladmin', delc=i.id) }}"
-                    onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');"
-                    title="Cancella elemento">
-                    <i class="bi bi-trash"></i></a></th>
+            <form action="#category" method="POST">
+                <tr class="table_add">
+                    <th><button name="edit_element" value="{{i.id}}" class="edit_element" type="submit">Conferma</button></th>
+                    <th><input value="{{i.id}}" type="text" name="edit_id"></input></th>
+                    <th><input value="{{i.name}}" type="text" name="edit_name"></input></th>
+                    <th><input value="{{i.cat_name}}" type="text" name="edit_cat_name"></input></th>
+                    <th><input value="{{i.starting_price}}" type="text" name="edit_starting_price"></input></th>
+                    <th><input value="{{i.image_path}}" type="text" name="edit_image_path"></input></th>
+                    <th><a href="{{ url_for('deladmin', delc=i.id) }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
+                    <th style="display: none;"><input value="cat" name="type" type="text"></input></th>
+                </tr>
+            </form>
         </tr>
         {% endfor %}
-        <form action="" method="POST">
+        <form action="#category" method="POST">
             <tr class="table_add">
-                <th><input type="text" name="new_id" placeholder="Product Id" value="{{ request.form['id'] }}"></input></th>
+                <th></th>
+                <th><input type="text" name="new_id" placeholder="Product Id"></input></th>
                 <th><input type="text" name="new_name" placeholder="Product Name"></input></th>
                 <th><input type="text" name="new_cat_name" placeholder="Product Cat Name"></input></th>
                 <th><input type="text" name="new_starting_price" placeholder="Product Starting Price"></input></th>
                 <th><input type="text" name="new_image_path" placeholder="Product Image Path"></input></th>
-                <th><button class="add_element" type="submit"><i class="bi bi-plus-circle"></i></button></th>
+                <th><button name="add_element" class="add_element" type="submit"><i class="bi bi-plus-circle"></i></button></th>
+                <th style="display: none;"><input value="cat" name="type" type="text"></input></th>
             </tr>
         </form>
     </table>
 
 </div>
 
+<div id="products" class="category">
+    <p class="category_title">Prodotti</p>
+    <table class="category_table">
+        <tr class="table_head">
+            <th></th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Nome Categoria</th>
+            <th>Screens</th>
+            <th>Path Image</th>
+            <th>Action</th>
+        </tr>
+
+        {% for i in all_products %}
+        <tr>
+            <form action="#products" method="POST">
+                <tr class="table_add">
+                    <th><button name="edit_element" value="{{i.id}}" class="edit_element" type="submit">Conferma</button></th>
+                    <th><input value="{{i.id}}" type="text" name="edit_id"></input></th>
+                    <th><input value="{{i.name}}" type="text" name="edit_name"></input></th>
+                    <th><input value="{{i.cat_name}}" type="text" name="edit_cat_name"></input></th>
+                    <th><input value="{{i.screens}}" type="text" name="edit_screens"></input></th>
+                    <th><input value="{{i.image_path}}" type="text" name="edit_image_path"></input></th>
+                    <th><a href="{{ url_for('deladmin', delc=i.id) }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
+                    <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
+                </tr>
+            </form>
+        </tr>
+        {% endfor %}
+        <form action="#products" method="POST">
+            <tr class="table_add">
+                <th></th>
+                <th><input type="text" name="new_id" placeholder="Product Id"></input></th>
+                <th><input type="text" name="new_name" placeholder="Product Name"></input></th>
+                <th><input type="text" name="new_cat_name" placeholder="Product Cat Name"></input></th>
+                <th><input type="text" name="new_screens" placeholder="Product Screens"></input></th>
+                <th><input type="text" name="new_image_path" placeholder="Product Image Path"></input></th>
+                <th><button name="add_element" class="add_element" type="submit"><i class="bi bi-plus-circle"></i></button></th>
+                <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
+            </tr>
+        </form>
+    </table>
+
+</div>
 
 
 {% endblock %}
