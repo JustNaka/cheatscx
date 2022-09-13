@@ -9,6 +9,7 @@
 {% block body %}
 <div class="head centered">
     <h1 class="head_title">Admin Page</h1>
+    <button class="btn btn-danger"><a href="{{ url_for('logout') }}" style="text-decoration: none; color: white; font-weight: 600;">LOGOUT</a></button>
 </div>
 
 <div id="category" class="category">
@@ -34,7 +35,7 @@
                     <th><input value="{{i.cat_name}}" type="text" name="edit_cat_name"></input></th>
                     <th><input value="{{i.starting_price}}" type="text" name="edit_starting_price"></input></th>
                     <th><input value="{{i.image_path}}" type="text" name="edit_image_path"></input></th>
-                    <th><a href="{{ url_for('deladmin', delc=i.id) }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
+                    <th><a href="{{ url_for('deladmin', delid=i.id, origin='admin', type='cat') }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
                     <th style="display: none;"><input value="cat" name="type" type="text"></input></th>
                 </tr>
             </form>
@@ -79,7 +80,7 @@
                     <th><input value="{{i.cat_name}}" type="text" name="edit_cat_name"></input></th>
                     <th><input value="{{i.screens}}" type="text" name="edit_screens"></input></th>
                     <th><input value="{{i.image_path}}" type="text" name="edit_image_path"></input></th>
-                    <th><a href="{{ url_for('deladmin', delc=i.id) }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
+                    <th><a href="{{ url_for('deladmin', delid=i.id, origin='admin', type='prod') }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
                     <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
                 </tr>
             </form>

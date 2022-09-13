@@ -24,10 +24,10 @@ products = [
 
 
 users = [
-    Users(id="1", username="test", password="suca")
+    Users(id="1", username="test", password="suca", is_auth=False)
 ]
 
-for i in products:
+for i in users:
     db.session.add(i)
     db.session.commit()
 

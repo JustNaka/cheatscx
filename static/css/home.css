@@ -224,7 +224,7 @@ body {
     flex: 1 1 400px !important;
     border: transparent;
     border-radius: 30px;
-    max-width: 300px;
+    max-width: 350px;
     background-color: #18181b;
     display: flex;
     flex-direction: row !important;
@@ -240,7 +240,7 @@ body {
     transition: all 0.2s linear;
 }
 
-.benefit div .bi {
+.benefit div .fa {
     font-size: 41pt;
     padding-right: 20px;
 }
