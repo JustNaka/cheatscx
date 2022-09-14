@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
 from flask_login import (current_user, LoginManager, login_user, logout_user, login_required)
 from datetime import timedelta
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
 app.secret_key = "Equindimarlenatornaacasa"
@@ -13,21 +14,11 @@ login_manager.login_view = 'login'
 app.config['REMEMBER_COOKIE_DURATION'] = timedelta(minutes=30)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return Users.query.get(user_id)
 
-
-#@app.before_request
-#def before_request():
-#    if 'user_id' in session:
-#        all_users = Users.query.all()
-#        
-#        for x in all_users:
-#            if x.id == session['user_id']:
-#                g.user = x.username
-#    else:
-#        g.user = None
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///category.db'
 app.config['SQLALCHEMY_BINDS'] = {
@@ -35,6 +26,10 @@ app.config['SQLALCHEMY_BINDS'] = {
     'products':      'sqlite:///products.db',
     'users':      'sqlite:///users.db'
 }
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
+
 db = SQLAlchemy(app)
 
 class Category(db.Model):
@@ -55,7 +50,11 @@ class Products(db.Model):
     cat_name = db.Column(db.Text, nullable=False)
     name = db.Column(db.Text, nullable=False)
     image_path = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    status = db.Column(db.Text, nullable=False)
     type = db.Column(db.Text, nullable=False)
+    requirements = db.Column(JSON)
+    features = db.Column(JSON)
     screens = db.Column(JSON)
 
     def __repr__(self):
@@ -127,8 +126,6 @@ def login():
     
     return render_template('login.html')
 
-
-
 @app.route("/logout")
 @login_required
 def logout():
@@ -165,12 +162,15 @@ def admin():
                 new_name = request.form["new_name"]
                 new_cat_name = request.form["new_cat_name"]
                 new_screens = request.form["new_screens"]
+                new_requirements = request.form["new_requirements"]
+                new_status = request.form["new_status"]
                 new_image_path = request.form["new_image_path"]
+                new_features = request.form["new_features"]
                 
-                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "":
+                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "" or new_requirements == "" or new_status == "" or new_features == "":
                     return redirect(url_for('admin'))
                 else:
-                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, type="cat"))
+                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, requirements=new_requirements, status=new_status, features=new_features, type="cat"))
                     db.session.commit()
         elif 'edit_element' in request.form:
             if request.form["type"] == "cat":
@@ -195,9 +195,12 @@ def admin():
                 edit_name = request.form["edit_name"]
                 edit_cat_name = request.form["edit_cat_name"]
                 edit_screens = request.form["edit_screens"]
+                edit_requirements = request.form["edit_requirements"]
+                edit_status = request.form["edit_status"]
+                edit_features = request.form["edit_features"]
                 edit_image_path = request.form["edit_image_path"]
             
-                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "":
+                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "" or edit_requirements == "" or edit_status == "" or edit_features == "":
                     return redirect(url_for('admin'))
                 else:
                     cat = Products.query.filter_by(id=request.form["edit_element"]).first()
@@ -205,6 +208,9 @@ def admin():
                     cat.name = edit_name
                     cat.cat_name = edit_cat_name
                     cat.screens = edit_screens
+                    cat.status = edit_status
+                    cat.requirements = edit_requirements
+                    cat.features = edit_features
                     cat.image_path = edit_image_path
                     db.session.commit()
             

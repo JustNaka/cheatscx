@@ -12,7 +12,7 @@
 <div class="content">
 
     <div class="version fixed-bottom">
-        <button type="button" class="btn btn-primary" id="liveToastBtn">Ver. 2.2 09/09 20:00<div id="app1"></div>
+        <button type="button" class="btn btn-primary" id="liveToastBtn">Ver. 3.0 13/09 15:30<div id="app1"></div>
         </button>
     </div>
 
@@ -672,6 +672,7 @@
                             <button class="product" name="product_category" value="{{ product.cat_name }}" id="{{ product.id }}" type="reset" onclick="location.href='/product/{{ product.name }}';">
                                 <img class="product_img" src="{{ product.image_path }}" alt="">
                                 <p class="product_title">{{ product.name }}</p>
+                                <p class="product_start_price">Status: <span style="color: #1fda11;">{{ product.status }}</span></p>
                             </button>
                         {% endif %}
                         
@@ -685,60 +686,6 @@
                     {% endif %}
                 </form>
 
-            </div>
-        </div>
-    </section>
-
-
-    <section id="faq">
-        <div class="">
-            <p class="faq_title">Faq</p>
-            <div class="faq_container container">
-                <div class="faq_item">
-                    <button class="item_btn item_btn1" type="button"
-                        onclick="changeIconFaq('.baf_1'); changeBorderFaq('.item_btn1')" data-bs-toggle="collapse"
-                        data-bs-target="#collapsefaq" aria-expanded="false" aria-controls="collapsefaq">
-                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i
-                            class="bi button_arrow_faq baf_1 bi-chevron-down"></i>
-                    </button>
-                    <div class="collapse collapse_faq" id="collapsefaq">
-                        <div class="card card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna
-                            volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor,
-                            nisi odio porta justo, in lacinia neque sapien vel diam.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_item">
-                    <button class="item_btn item_btn2" type="button"
-                        onclick="changeIconFaq('.baf_2'); changeBorderFaq('.item_btn2')" data-bs-toggle="collapse"
-                        data-bs-target="#collapsefaq2" aria-expanded="false" aria-controls="collapsefaq2">
-                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i
-                            class="bi button_arrow_faq baf_2 bi-chevron-down"></i>
-                    </button>
-                    <div class="collapse collapse_faq" id="collapsefaq2">
-                        <div class="card card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna
-                            volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor,
-                            nisi odio porta justo, in lacinia neque sapien vel diam.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_item">
-                    <button class="item_btn item_btn3" type="button"
-                        onclick="changeIconFaq('.baf_3'); changeBorderFaq('.item_btn3')" data-bs-toggle="collapse"
-                        data-bs-target="#collapsefaq3" aria-expanded="false" aria-controls="collapsefaq3">
-                        <i class="bi bi-chat-left-text-fill"></i> Lorem ipsum dolore sit amen <i
-                            class="bi button_arrow_faq baf_3 bi-chevron-down"></i>
-                    </button>
-                    <div class="collapse collapse_faq" id="collapsefaq3">
-                        <div class="card card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque tellus ut magna
-                            volutpat, sit amet tempor dolor fermentum. Etiam varius, tellus et ullamcorper porttitor,
-                            nisi odio porta justo, in lacinia neque sapien vel diam.
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

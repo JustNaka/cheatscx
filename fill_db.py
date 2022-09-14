@@ -12,14 +12,14 @@ category = [
 ]
 
 products = [
-    Products(id="1", cat_name="gta", name="GTA V_1", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
-    Products(id="2", cat_name="gta", name="GTA V_2", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}), 
-    Products(id="3", cat_name="gta", name="GTA V_3", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}), 
-    Products(id="4", cat_name="gta", name="GTA V_4", image_path="/static/imgs/gta.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}), 
-    Products(id="5", cat_name="apex", name="DAYZ_1", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
-    Products(id="6", cat_name="apex", name="DAYZ_2", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
-    Products(id="7", cat_name="apex", name="DAYZ_3", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"}),
-    Products(id="8", cat_name="apex", name="DAYZ_4", image_path="/static/imgs/apex.png", type="product", screens={"1": "/static/imgs/gta.png", "2": "/static/imgs/apex.png"})
+    Products(id="1", cat_name="gta", name="GTA V_1", image_path="/static/imgs/gta.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}),
+    Products(id="2", cat_name="gta", name="GTA V_2", image_path="/static/imgs/gta.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}), 
+    Products(id="3", cat_name="gta", name="GTA V_3", image_path="/static/imgs/gta.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}), 
+    Products(id="4", cat_name="gta", name="GTA V_4", image_path="/static/imgs/gta.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}), 
+    Products(id="5", cat_name="apex", name="DAYZ_1", image_path="/static/imgs/apex.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}),
+    Products(id="6", cat_name="apex", name="DAYZ_2", image_path="/static/imgs/apex.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}),
+    Products(id="7", cat_name="apex", name="DAYZ_3", image_path="/static/imgs/apex.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]}),
+    Products(id="8", cat_name="apex", name="DAYZ_4", image_path="/static/imgs/apex.png", type="product", description="Grazie a questo cheat potrai cheatare nel tuo gioco preferito!", status="Undetected", screens={"1": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg", "2": "https://ring-1.io/uploads/apex-1-62d9fa4e0fcd2025956931.jpg"}, requirements={"1": ["CPU:", "Intel only!"], "2": ["OS:", "Windows 10&11"], "3": ["Supported Anti-Cheat(s):", "BattlEye Anti-Cheat"]}, features={"AIM ASSIST": ["banane", "pesce"],"MISC": ["noci", "mandorle"]})
 ]
 
 
@@ -27,7 +27,7 @@ users = [
     Users(id="1", username="test", password="suca", is_auth=False)
 ]
 
-for i in users:
+for i in products:
     db.session.add(i)
     db.session.commit()
 

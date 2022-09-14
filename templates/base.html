@@ -13,11 +13,17 @@
 </head>
 
 <body>
+    <style>
+        *{
+            cursor: url('/static/imgs/cursor.png'), auto !important;
+        }
+    </style>
     {% block body %}{% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.2.4/tsparticles.engine.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@2.2.4/tsparticles.preset.triangles.bundle.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@2.2.4/tsparticles.preset.triangles.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

@@ -66,7 +66,9 @@
             <th>Nome</th>
             <th>Nome Categoria</th>
             <th>Screens</th>
+            <th>Requirements</th>
             <th>Path Image</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
 
@@ -79,7 +81,9 @@
                     <th><input value="{{i.name}}" type="text" name="edit_name"></input></th>
                     <th><input value="{{i.cat_name}}" type="text" name="edit_cat_name"></input></th>
                     <th><input value="{{i.screens}}" type="text" name="edit_screens"></input></th>
+                    <th><input value="{{i.requirements}}" type="text" name="edit_requirements"></input></th>
                     <th><input value="{{i.image_path}}" type="text" name="edit_image_path"></input></th>
+                    <th><input value="{{i.status}}" type="text" name="edit_status"></input></th>
                     <th><a href="{{ url_for('deladmin', delid=i.id, origin='admin', type='prod') }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
                     <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
                 </tr>
@@ -93,7 +97,9 @@
                 <th><input type="text" name="new_name" placeholder="Product Name"></input></th>
                 <th><input type="text" name="new_cat_name" placeholder="Product Cat Name"></input></th>
                 <th><input type="text" name="new_screens" placeholder="Product Screens"></input></th>
+                <th><input type="text" name="new_requirements" placeholder="Product Requirements"></input></th>
                 <th><input type="text" name="new_image_path" placeholder="Product Image Path"></input></th>
+                <th><input type="text" name="new_status" placeholder="Product Status"></input></th>
                 <th><button name="add_element" class="add_element" type="submit"><i class="bi bi-plus-circle"></i></button></th>
                 <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
             </tr>
