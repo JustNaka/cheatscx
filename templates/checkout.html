@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+<link rel="stylesheet" href="/static/css/checkout.css">
+
+<title>Cheat.cx | Checkout {{product.name}}</title>
+{% endblock %}
+
+{% block body %}
+
+
+<section id="product">
+    <div class="product_container container">
+        <div class="row">
+            <div class="col-12 col-lg-5">
+                <img src="https://ring-1.io/uploads/apex-legends-62d9b883a2e26373326806.jpg" alt="{{product.name}}"
+                    class="product_image">
+            </div>
+            <div class="col-12 col-lg-7">
+                <p class="product_title">{{ product.name }}</p>
+                <p class="product_description"> {{ product.description }} </p>  
+            </div>
+        </div>
+
+        <div class="">
+            <form action="">
+                <div class="data_container">
+                    <p class="title_1"><i class="bi bi-person-fill"></i> Dati Utente</p>
+                    <p class="alert_must">Le caselle contrassegnate con (<span style="color: red;">*</span>) sono obbligatorie</p>
+                    <div class="form_data">
+                        <div>
+                            <p class="input_title">Nome <span style="color: red;">*</span></p>
+                            <input type="text" name="" placeholder="Mario" id="">
+                        </div>
+                        <div>
+                            <p class="input_title">Email <span style="color: red;">*</span></p>
+                            <input type="email" name="" placeholder="mario.rossi@email.com" id="">
+                        </div>
+                    </div>
+                </div>
+                <div class="data_container">
+                    <p class="title_1"><i class="bi bi-bank2"></i> Dati Pagamento</p>
+                    <div class="form_data">
+                        <div style="color: white;" class="radio_container">
+                            <div>
+                                <input type="radio" id="coinbase" name="payment_method" value="coinbase">
+                                <label class="radio_label" for="coinbase"><i class="bi bi-currency-bitcoin"></i> Coinbase</label>
+
+                                <div class="hidden">
+                                    <a class="buy-with-crypto"
+                                    href="https://commerce.coinbase.com/checkout/78ba15fe-4a3a-403e-bf62-19a071a51ce4">
+                                    Buy with Crypto
+                                    </a>
+                                    <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807">
+                                    </script>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="radio" id="paypal" name="payment_method" value="paypal">
+                                <label class="radio_label" for="paypal"><i class="bi bi-paypal"></i> Paypal</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="stripe" name="payment_method" value="stripe">
+                                <label class="radio_label" for="stripe"><i class="bi bi-credit-card"></i> Stripe</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+{% endblock%}

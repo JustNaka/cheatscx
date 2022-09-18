@@ -14,11 +14,49 @@
 
 <body>
     <style>
-        *{
+        * {
             cursor: url('/static/imgs/cursor.png'), auto !important;
         }
     </style>
     {% block body %}{% endblock %}
+
+
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><b><i>CHEAT.CX</i></b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse centered" id="navbarNavAltMarkup">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link navlink-special"><i class="bi bi-discord"></i> Discord</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <footer>
+        <div class="centered">
+            <p class="footer_text">Copyright © 2022 Cheat.cx All rights reserved</p>
+        </div>
+    </footer>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.2.4/tsparticles.engine.min.js"></script>
@@ -30,6 +68,18 @@
         crossorigin="anonymous"></script>
 
     <script src="https://use.fontawesome.com/52159aef7c.js"></script>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-active');
+            } else {
+                navbar.classList.remove('navbar-active');
+            }
+        };
+    </script>
+
 </body>
 
 </html>

@@ -20,6 +20,10 @@ h1, p {
     margin: 50px;
 }
 
+.head{
+    margin-top: 150px;
+}
+
 .category{
     display: flex !important;
     flex-direction: column !important;

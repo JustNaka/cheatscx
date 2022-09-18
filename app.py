@@ -1,9 +1,14 @@
 from flask import abort, Flask, render_template, url_for, request, redirect, session, flash, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
+from datetime import datetime
 from flask_login import (current_user, LoginManager, login_user, logout_user, login_required)
 from datetime import timedelta
 from werkzeug.middleware.proxy_fix import ProxyFix
+import atexit
+import requests
+from apscheduler.schedulers.background import BackgroundScheduler
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 app.secret_key = "Equindimarlenatornaacasa"
@@ -13,6 +18,7 @@ login_manager.login_view = 'login'
 
 app.config['REMEMBER_COOKIE_DURATION'] = timedelta(minutes=30)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 @login_manager.user_loader
@@ -39,6 +45,7 @@ class Category(db.Model):
     image_path = db.Column(db.Text, nullable=False)
     cat_name = db.Column(db.Text, nullable=False)
     starting_price = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.Text, nullable=False)
     type = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
@@ -53,6 +60,7 @@ class Products(db.Model):
     description = db.Column(db.Text, nullable=False)
     status = db.Column(db.Text, nullable=False)
     type = db.Column(db.Text, nullable=False)
+    sub_type = db.Column(JSON)
     requirements = db.Column(JSON)
     features = db.Column(JSON)
     screens = db.Column(JSON)
@@ -97,10 +105,13 @@ def index():
         
     return render_template("home.html", products=all_products)
 
-
-@app.route('/product/<string:prod_name>')
+@app.route('/product/<string:prod_name>', methods=['POST', 'GET'])
 def product(prod_name):
     all_prod = Products.query.filter_by(name=prod_name).first_or_404()
+    
+    if request.method == 'POST':
+        sub_type = request.form['sub_type']
+        return redirect(url_for("checkout", prod=all_prod.id, sub_type=sub_type))
 
     return render_template("product.html", product=all_prod)
 
@@ -138,10 +149,8 @@ def logout():
 @app.route('/admin', methods=['POST', 'GET'])
 @login_required
 def admin():
-    
     category = Category.query.all()
     products = Products.query.all()
-    
     
     if request.method == 'POST':
         if 'add_element' in request.form:
@@ -164,13 +173,14 @@ def admin():
                 new_screens = request.form["new_screens"]
                 new_requirements = request.form["new_requirements"]
                 new_status = request.form["new_status"]
+                new_sub_type = request.form["new_sub_type"]
                 new_image_path = request.form["new_image_path"]
                 new_features = request.form["new_features"]
                 
-                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "" or new_requirements == "" or new_status == "" or new_features == "":
+                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "" or new_requirements == "" or new_status == "" or new_features == "" or new_sub_type == "":
                     return redirect(url_for('admin'))
                 else:
-                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, requirements=new_requirements, status=new_status, features=new_features, type="cat"))
+                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, requirements=new_requirements, status=new_status, features=new_features, sub_type=new_sub_type, type="cat"))
                     db.session.commit()
         elif 'edit_element' in request.form:
             if request.form["type"] == "cat":
@@ -197,10 +207,11 @@ def admin():
                 edit_screens = request.form["edit_screens"]
                 edit_requirements = request.form["edit_requirements"]
                 edit_status = request.form["edit_status"]
+                edit_sub_type = request.form["edit_sub_type"]
                 edit_features = request.form["edit_features"]
                 edit_image_path = request.form["edit_image_path"]
             
-                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "" or edit_requirements == "" or edit_status == "" or edit_features == "":
+                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "" or edit_requirements == "" or edit_status == "" or edit_features == "" or edit_sub_type == "":
                     return redirect(url_for('admin'))
                 else:
                     cat = Products.query.filter_by(id=request.form["edit_element"]).first()
@@ -212,13 +223,13 @@ def admin():
                     cat.requirements = edit_requirements
                     cat.features = edit_features
                     cat.image_path = edit_image_path
+                    cat.sub_type = edit_sub_type
                     db.session.commit()
             
                 
         return redirect(url_for('admin'))
             
     return render_template("admin.html", all_category=category, all_products=products)
-
 
 @app.route('/deladmin/<int:delid>/<string:origin>/<string:type>')
 @login_required
@@ -246,7 +257,92 @@ def deladmin(delid, origin, type):
             
     return redirect(url_for('admin'))
 
+# /checkout?prod=1&sub_type=""
+@app.route('/checkout', methods=['POST', 'GET'])
+def checkout():
+    prod = request.args.get("prod")
+    sub_type = request.args.get("sub_type")
+    
+    if prod == None or sub_type == None:
+        return redirect(url_for(".index"))
+    
+    product = Products.query.filter_by(id=prod).first_or_404()
+    
+    
+    return render_template('checkout.html', product=product)
 
+return_value = {"rust": "", "apex": "", "dead": "", "dayz": "", "tarkov": "", "cycle": "", "valorant": "", "gta": "", "fivem": "", "last_update": ""}  
+def web_scraping():
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("Inizio Web Scraping ore: ", dt_string)
+    return_value["last_update"] = dt_string
+    
+    collapse_games = ["rust-en-full", "apex", "dbd-en", "dayz-en", "tarkov-en", "cycle-en", "valorant-en"]
+    our_games = ["rust", "apex", "dead", "dayz", "tarkov", "cycle", "valorant"]
+    games_status = []
+    base_url = "https://collapse.fun/games/rust-en-full/"
+    page = requests.get(base_url)
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    productMenu__info = soup.find_all("div", class_="productMenu__info")
+
+    for i in productMenu__info:
+        productMenu__swiper = i.find_all("div", class_="productMenu__swiper")    
+        for y in productMenu__swiper:
+            swiper_wrapper = y.find_all("div", class_="swiper-wrapper")
+            for j in swiper_wrapper:
+                swiper_slide = j.find_all("div", class_="swiper-slide")
+                for k in swiper_slide:
+                    productInfoFeature__value = k.find_all("span", class_="productInfoFeature__value")
+                    games_status.append(productInfoFeature__value[0].text)
+    
+    for i in our_games:
+        cat = Products.query.filter_by(cat_name=i).first()
+        if cat.name == "RUST FULL":
+            rustlite= Products.query.filter_by(name="RUST LITE").first()
+            rustlite.status = games_status[our_games.index(i)]
+        cat.status = games_status[our_games.index(i)]
+        db.session.commit()
+    
+    print("Web Scraping eseguito con successo! \n")
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("Inizio Web Scraping ore: ", dt_string)
+    
+    collapse_games = ["rust-en-full", "apex", "dbd-en", "dayz-en", "tarkov-en", "cycle-en", "valorant-en"]
+    our_games = ["rust", "apex", "dead", "dayz", "tarkov", "cycle", "valorant"]
+    games_status = []
+    base_url = "https://collapse.fun/games/rust-en-full/"
+    page = requests.get(base_url)
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    productMenu__info = soup.find_all("div", class_="productMenu__info")
+
+    for i in productMenu__info:
+        productMenu__swiper = i.find_all("div", class_="productMenu__swiper")    
+        for y in productMenu__swiper:
+            swiper_wrapper = y.find_all("div", class_="swiper-wrapper")
+            for j in swiper_wrapper:
+                swiper_slide = j.find_all("div", class_="swiper-slide")
+                for k in swiper_slide:
+                    productInfoFeature__value = k.find_all("span", class_="productInfoFeature__value")
+                    games_status.append(productInfoFeature__value[0].text)
+    
+    for i in our_games:
+        cat = Category.query.filter_by(cat_name=i).first()
+        cat.status = games_status[our_games.index(i)]
+        db.session.commit()
+    
+    print("Web Scraping eseguito con successo! \n")
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=web_scraping, trigger="interval", minutes=15)
+scheduler.start()
+
+atexit.register(lambda: scheduler.shutdown())
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    web_scraping()
+    app.run(host='0.0.0.0', debug=True, use_reloader=False)
+    

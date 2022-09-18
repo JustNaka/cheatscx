@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #0d0d0f;
+}
+
+/* PRODUCT */
+.product_container {
+    margin-top: 150px;
+}
+
+.product_image {
+    width: 500px;
+}
+
+.product_title {
+    font-family: 'Work Sans';
+    font-size: 23pt;
+    color: white;
+    font-weight: 600;
+    text-align: start !important;
+}
+
+.product_description {
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    color: gray;
+    font-weight: 400;
+    margin-top: 20px;
+    text-align: start !important;
+}
+
+/* END PRODUCT */
+
+
+/* DATA FORM */
+.data_container {
+    margin-top: 50px;
+}
+
+.bi-person-fill,
+.bi-bank2 {
+    color: #521c66;
+    border: 1px solid #303032;
+    border-radius: 10px;
+    padding: 5px 7px;
+}
+
+.title_1 {
+    font-family: 'Work Sans';
+    font-size: 18pt;
+    color: white;
+    font-weight: 500;
+    text-align: start !important;
+}
+
+.alert_must {
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    color: #58717c;
+    font-weight: 400;
+    text-align: start !important;
+}
+
+.form_data {
+    display: flex;
+    flex-direction: row;
+    gap: 30px 50px;
+    flex-wrap: wrap
+}
+
+.form_data div {
+    flex-direction: column !important;
+}
+
+.input_title {
+    font-family: 'Work Sans';
+    font-size: 16pt;
+    color: white;
+    font-weight: 500;
+    text-align: start !important;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 400px;
+    padding: 22px 20px;
+    border-radius: 10px;
+    text-align: start;
+    border: 2px solid #521c66;
+    background-color: white;
+    color: black;
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+    color: #58717c;
+    font-family: 'Work Sans';
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+
+.radio_container{
+    display: flex;
+    gap: 20px;
+    margin: 10px 0px 0px 20px;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    transform: translateY(3px);
+}
+
+input[type="radio"]:checked {
+    width: 20px;
+    height: 20px;
+    background: #521c66;
+}
+
+.radio_label{
+    font-family: 'Work Sans';
+    font-size: 14pt !important;
+    font-weight: 400;
+}
+
+
+/* END DATA FORM */
