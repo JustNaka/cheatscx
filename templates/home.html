@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Cheat.cx | Homepage</title>
-    <link rel="stylesheet" href="static/css/home.css">
-    <link rel="stylesheet" href="static/css/common.css">
-    <link rel="stylesheet" media="screen" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/svg-animation.css">
+<title>Cheat.cx | Homepage</title>
+<link rel="stylesheet" href="static/css/home.css">
+<link rel="stylesheet" href="static/css/common.css">
+<link rel="stylesheet" media="screen" href="static/css/style.css">
+<link rel="stylesheet" href="static/css/svg-animation.css">
 {% endblock %}
 
 {% block body %}
 <div class="content">
-
+    <canvas id="canvas"></canvas>
+    
     <div class="version fixed-bottom">
         <button type="button" class="btn btn-primary" id="liveToastBtn">Ver. 3.0 13/09 15:30<div id="app1"></div>
         </button>
     </div>
 
     <section id="home">
-        <div id="tsparticles">
-            <img src="static/imgs/bg.png" alt="Background" class="home_backgrownd_svg">
+        <div id="part_cont">
+
             <div class="home_container container-fluid">
                 <div class="col-text">
                     <p class="home_title">
@@ -27,12 +28,15 @@
                         and <span class="colored">fun!</span>
                     </p>
                     <p class="home_subtitle">
-                        We pride ourselves in being able to deliver a high quality product <br> for a fraction of the
+                        We pride ourselves in being able to deliver a high quality product <br> for a fraction of
+                        the
                         price of our competitors.
                     </p>
                     <div class="btn_container">
-                        <button class="home_btn home_discord"><i class="bi bi-discord"></i> Join our Discord</button>
-                        <button class="home_btn home_products"><i class="bi bi-laptop"></i> Check our Products</button>
+                        <button onclick=" window.open('https://discord.gg/cheatscx', '_blank');"
+                            class="home_btn home_discord"><i class="bi bi-discord"></i> Join our Discord</button>
+                        <button onclick="location.href='#products'" class="home_btn home_products"><i
+                                class="bi bi-laptop"></i> Check our Products</button>
                     </div>
                 </div>
                 <div class="col-gif">
@@ -482,7 +486,8 @@
                             <clipPath id="freepik--clip-path-2--inject-2">
                                 <path
                                     d="M289.37,208.18s0,18.7,1,22.64,7.55,22.63,9.19,27.88,14.43,28.53,17.38,32.14,15.74-5.25,15.74-5.25l7.22,15.75s15.59-25.88,19.2-32.12,5.65-13.12,3-23-2.88-10.2-19.28-18.07-40.34-17.05-44.93-20.33S290,205.89,289.37,208.18Z"
-                                    style="fill:#fff;stroke:#263238;stroke-linecap:round;stroke-linejoin:round"></path>
+                                    style="fill:#fff;stroke:#263238;stroke-linecap:round;stroke-linejoin:round">
+                                </path>
                             </clipPath>
                             <clipPath id="freepik--clip-path-3--inject-2">
                                 <path
@@ -526,7 +531,6 @@
                 </div>
             </div>
             <div class="godown">
-
                 <section id="section06" class="demo">
                     <a href="#benefits"><span></span></a>
                 </section>
@@ -630,37 +634,58 @@
                 <form method="POST">
                     {% for product in products %}
 
-                        {% if product.type == "cat" %}
-                            <button class="product" name="product_category" value="{{ product.cat_name }}" id="{{ product.id }}" onclick="location.href='#products';">
-                                <img class="product_img" src="{{ product.image_path }}" alt="">
-                                <p class="product_title">{{ product.name }}</p>
-                                <p class="product_start_price">A partire da: <span style="color: #1fda11;">{{ product.starting_price }}€</span></p>
-                            </button>
-                        {% endif %}
+                    {% if product.type == "cat" %}
+                    <button class="product" name="product_category" value="{{ product.cat_name }}" id="{{ product.id }}"
+                        onclick="location.href='#products';">
+                        <img class="product_img" src="{{ product.image_path }}" alt="">
+                        <p class="product_title">{{ product.name }}</p>
+                        <p class="product_start_price">A partire da: <span style="color: #1fda11;">{{
+                                product.starting_price }}€</span></p>
+                    </button>
+                    {% endif %}
 
-                        {% if product.type == "product" %}
-                            <button class="product" name="product_category" value="{{ product.cat_name }}" id="{{ product.id }}" type="reset" onclick="location.href='/product/{{ product.name }}';">
-                                <img class="product_img" src="{{ product.image_path }}" alt="">
-                                <p class="product_title">{{ product.name }}</p>
-                                <p class="product_start_price">Status: <span style="color: #1fda11;">{{ product.status }}</span></p>
-                            </button>
-                        {% endif %}
-                        
+                    {% if product.type == "product" %}
+                    <button class="product" name="product_category" value="{{ product.cat_name }}" id="{{ product.id }}"
+                        type="reset" onclick="location.href='/product/{{ product.name }}';">
+                        <img class="product_img" src="{{ product.image_path }}" alt="">
+                        <p class="product_title">{{ product.name }}</p>
+                        <p class="product_start_price">Status: <span style="color: #1fda11;">{{ product.status }}</span>
+                        </p>
+                    </button>
+                    {% endif %}
+
                     {% endfor %}
 
                     {% if products[0].type == "product" %}
-                        <br>
-                        <button class="back_home" name="product_category" value="home" onclick="location.href='#products';">
-                            <p class="bh_title">All products</p>
-                        </button>
+                    <br>
+                    <button class="back_home" name="product_category" value="home" onclick="location.href='#products';">
+                        <p class="bh_title">All products</p>
+                    </button>
                     {% endif %}
                 </form>
 
             </div>
         </div>
     </section>
+    <script type="text/javascript" src="static/js/warpspeed.min.js"></script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var x = new WarpSpeed("canvas", { "speed": 10, "speedAdjFactor": 0, "density": 0.9, "shape": "square", "warpEffect": true, "warpEffectLength": 5, "depthFade": true, "starSize": 4, "backgroundColor": "#120d1f", "starColor": "#FFFFFF" });
+
+            var i = 10;
+            function decrementSpeed() {
+                setTimeout(function () {
+                    x.SPEED = i
+                    i--;
+                    if (i > 0) {
+                        decrementSpeed();
+                    }
+                }, 60)
+            }
+
+            decrementSpeed();
+        });
 
         function changeIconFaq(el) {
             var element = document.querySelector(el);
@@ -724,363 +749,7 @@
             if (textArray.length) setTimeout(type, newTextDelay + 250);
         });
 
-        window.addEventListener('DOMContentLoaded', (event) => {
-            tsParticles.load("tsparticles", {
-                "background": {
-                    "color": {
-                        "value": "#521c66"
-                    },
-                    "position": "50% 50%",
-                    "repeat": "no-repeat",
-                    "size": "cover"
-                },
-                "fullScreen": {
-                    "enable": false,
-                    "zIndex": 1
-                },
-                "interactivity": {
-                    "events": {
-                        "onClick": {
-                            "mode": "push"
-                        },
-                        "onDiv": {
-                            "selectors": "#repulse-div",
-                            "mode": "repulse"
-                        },
-                        "onHover": {
-                            "mode": "repulse",
-                            "parallax": {
-                                "force": 60
-                            }
-                        }
-                    },
-                    "modes": {
-                        "slow": {
-                            "factor": 1,
-                            "radius": 0
-                        },
-                        "attract": {
-                            "distance": 200,
-                            "duration": 0.4,
-                            "easing": "ease-out-quad",
-                            "factor": 1,
-                            "maxSpeed": 50,
-                            "speed": 1
-                        },
-                        "bounce": {
-                            "distance": 200
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "duration": 2,
-                            "mix": false,
-                            "opacity": 0.8,
-                            "size": 40,
-                            "divs": {
-                                "distance": 200,
-                                "duration": 0.4,
-                                "mix": false,
-                                "selectors": []
-                            }
-                        },
-                        "connect": {
-                            "distance": 80,
-                            "links": {
-                                "opacity": 0.5
-                            },
-                            "radius": 60
-                        },
-                        "grab": {
-                            "distance": 400,
-                            "links": {
-                                "blink": false,
-                                "consent": false,
-                                "opacity": 1
-                            }
-                        },
-                        "push": {
-                            "default": true,
-                            "groups": [],
-                            "quantity": 4
-                        },
-                        "remove": {
-                            "quantity": 2
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4,
-                            "factor": 100,
-                            "speed": 1,
-                            "maxSpeed": 50,
-                            "easing": "ease-out-quad",
-                            "divs": {
-                                "distance": 200,
-                                "duration": 0.4,
-                                "factor": 100,
-                                "speed": 1,
-                                "maxSpeed": 50,
-                                "easing": "ease-out-quad",
-                                "selectors": []
-                            }
-                        },
-                        "trail": {
-                            "delay": 1,
-                            "pauseOnStop": false,
-                            "quantity": 1
-                        },
-                        "light": {
-                            "area": {
-                                "gradient": {
-                                    "start": {
-                                        "value": "#ffffff"
-                                    },
-                                    "stop": {
-                                        "value": "#000000"
-                                    }
-                                },
-                                "radius": 1000
-                            },
-                            "shadow": {
-                                "color": {
-                                    "value": "#000000"
-                                },
-                                "length": 2000
-                            }
-                        }
-                    }
-                },
-                "particles": {
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "move": {
-                        "attract": {
-                            "rotate": {
-                                "x": 600,
-                                "y": 1200
-                            }
-                        },
-                        "enable": true,
-                        "path": {},
-                        "outModes": {
-                            "bottom": "out",
-                            "left": "out",
-                            "right": "out",
-                            "top": "out"
-                        },
-                        "spin": {}
-                    },
-                    "number": {
-                        "density": {
-                            "enable": true
-                        },
-                        "value": 80
-                    },
-                    "opacity": {
-                        "value": {
-                            "min": 0.1,
-                            "max": 0.5
-                        },
-                        "animation": {
-                            "enable": true,
-                            "speed": 1,
-                            "minimumValue": 0.1
-                        }
-                    },
-                    "shape": {
-                        "options": {
-                            "character": [
-                                {
-                                    "fill": true,
-                                    "font": "Font Awesome 5 Brands",
-                                    "style": "",
-                                    "value": [
-                                        ""
-                                    ],
-                                    "weight": "400"
-                                },
-                                {
-                                    "fill": true,
-                                    "font": "Font Awesome 5 Free",
-                                    "style": "",
-                                    "value": [
-                                        ""
-                                    ],
-                                    "weight": "900"
-                                }
-                            ]
-                        },
-                        "type": "character"
-                    },
-                    "size": {
-                        "value": 16,
-                        "animation": {
-                            "speed": 10,
-                            "minimumValue": 10
-                        }
-                    },
-                    "stroke": {
-                        "width": 1,
-                        "color": {
-                            "value": "#ffffff",
-                            "animation": {
-                                "h": {
-                                    "count": 0,
-                                    "enable": false,
-                                    "offset": 0,
-                                    "speed": 1,
-                                    "decay": 0,
-                                    "sync": true
-                                },
-                                "s": {
-                                    "count": 0,
-                                    "enable": false,
-                                    "offset": 0,
-                                    "speed": 1,
-                                    "decay": 0,
-                                    "sync": true
-                                },
-                                "l": {
-                                    "count": 0,
-                                    "enable": false,
-                                    "offset": 0,
-                                    "speed": 1,
-                                    "decay": 0,
-                                    "sync": true
-                                }
-                            }
-                        }
-                    },
-                    "life": {
-                        "count": 0,
-                        "delay": {
-                            "random": {
-                                "enable": false,
-                                "minimumValue": 0
-                            },
-                            "value": 0,
-                            "sync": false
-                        },
-                        "duration": {
-                            "random": {
-                                "enable": false,
-                                "minimumValue": 0.0001
-                            },
-                            "value": 0,
-                            "sync": false
-                        }
-                    },
-                    "roll": {
-                        "darken": {
-                            "enable": false,
-                            "value": 0
-                        },
-                        "enable": false,
-                        "enlighten": {
-                            "enable": false,
-                            "value": 0
-                        },
-                        "mode": "vertical",
-                        "speed": 25
-                    },
-                    "tilt": {
-                        "random": {
-                            "enable": false,
-                            "minimumValue": 0
-                        },
-                        "value": 0,
-                        "animation": {
-                            "enable": false,
-                            "speed": 0,
-                            "decay": 0,
-                            "sync": false
-                        },
-                        "direction": "clockwise",
-                        "enable": false
-                    },
-                    "twinkle": {
-                        "lines": {
-                            "enable": false,
-                            "frequency": 0.05,
-                            "opacity": 1
-                        },
-                        "particles": {
-                            "enable": false,
-                            "frequency": 0.05,
-                            "opacity": 1
-                        }
-                    },
-                    "wobble": {
-                        "distance": 5,
-                        "enable": false,
-                        "speed": {
-                            "angle": 50,
-                            "move": 10
-                        }
-                    },
-                    "orbit": {
-                        "animation": {
-                            "count": 0,
-                            "enable": false,
-                            "speed": 1,
-                            "decay": 0,
-                            "sync": false
-                        },
-                        "enable": false,
-                        "opacity": 1,
-                        "rotation": {
-                            "random": {
-                                "enable": false,
-                                "minimumValue": 0
-                            },
-                            "value": 45
-                        },
-                        "width": 1
-                    },
-                    "links": {
-                        "blink": false,
-                        "color": {
-                            "value": "#ffffff"
-                        },
-                        "consent": false,
-                        "distance": 150,
-                        "enable": true,
-                        "frequency": 1,
-                        "opacity": 0.4,
-                        "shadow": {
-                            "blur": 5,
-                            "color": {
-                                "value": "lime"
-                            },
-                            "enable": false
-                        },
-                        "triangles": {
-                            "enable": false,
-                            "frequency": 1
-                        },
-                        "width": 1,
-                        "warp": false
-                    },
-                    "repulse": {
-                        "random": {
-                            "enable": false,
-                            "minimumValue": 0
-                        },
-                        "value": 0,
-                        "enabled": false,
-                        "distance": 1,
-                        "duration": 1,
-                        "factor": 1,
-                        "speed": 1
-                    }
-                }
-            });
-
-        });
 
     </script>
-    <script src="static/js/particles.js"></script>
-    <script src="static/js/app.js"></script>
-
 </div>
 {% endblock %}

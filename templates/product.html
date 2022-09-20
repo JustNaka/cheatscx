@@ -50,7 +50,7 @@
                         <div class="subtype_container">
                             {% for i in product.sub_type %}
                             <label class="sub_type">
-                                <input type="radio" required name="sub_type" value="{{i}}"/>
+                                <input type="radio" required checked name="sub_type" value="{{i}}"/>
                                 <div>
                                     <p class="st_price">€{{ product.sub_type[i][0] }}</p>
                                     <p class="st_duration">{{ product.sub_type[i][1] }}</p>
