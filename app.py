@@ -1,3 +1,4 @@
+from importlib.metadata import requires
 from flask import abort, Flask, render_template, url_for, request, redirect, session, flash, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
@@ -174,13 +175,14 @@ def admin():
                 new_requirements = request.form["new_requirements"]
                 new_status = request.form["new_status"]
                 new_sub_type = request.form["new_sub_type"]
+                new_description = request.form["new_description"]
                 new_image_path = request.form["new_image_path"]
                 new_features = request.form["new_features"]
                 
-                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "" or new_requirements == "" or new_status == "" or new_features == "" or new_sub_type == "":
+                if new_id == "" or new_name == "" or new_cat_name == "" or new_screens == "" or new_image_path == "" or new_requirements == "" or new_status == "" or new_features == "" or new_sub_type == "" or new_description =="":
                     return redirect(url_for('admin'))
                 else:
-                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, requirements=new_requirements, status=new_status, features=new_features, sub_type=new_sub_type, type="cat"))
+                    db.session.add(Products(id=new_id, name=new_name, image_path=new_image_path, cat_name=new_cat_name, screens=new_screens, requirements=new_requirements, status=new_status, features=new_features, sub_type=new_sub_type, description=new_description, type="cat"))
                     db.session.commit()
         elif 'edit_element' in request.form:
             if request.form["type"] == "cat":
@@ -209,9 +211,10 @@ def admin():
                 edit_status = request.form["edit_status"]
                 edit_sub_type = request.form["edit_sub_type"]
                 edit_features = request.form["edit_features"]
+                edit_description = request.form["edit_description"]
                 edit_image_path = request.form["edit_image_path"]
             
-                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "" or edit_requirements == "" or edit_status == "" or edit_features == "" or edit_sub_type == "":
+                if edit_id == "" or edit_name == "" or edit_cat_name == "" or edit_screens == "" or edit_image_path == "" or edit_requirements == "" or edit_status == "" or edit_features == "" or edit_sub_type == "" or edit_description == "":
                     return redirect(url_for('admin'))
                 else:
                     cat = Products.query.filter_by(id=request.form["edit_element"]).first()
@@ -224,6 +227,7 @@ def admin():
                     cat.features = edit_features
                     cat.image_path = edit_image_path
                     cat.sub_type = edit_sub_type
+                    cat.description = edit_description
                     db.session.commit()
             
                 
@@ -343,6 +347,6 @@ scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
 if __name__ == "__main__":
-    web_scraping()
+    #web_scraping()
     app.run(host='0.0.0.0', debug=True, use_reloader=False)
     

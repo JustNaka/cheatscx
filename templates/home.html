@@ -4,14 +4,13 @@
 <title>Cheat.cx | Homepage</title>
 <link rel="stylesheet" href="static/css/home.css">
 <link rel="stylesheet" href="static/css/common.css">
-<link rel="stylesheet" media="screen" href="static/css/style.css">
 <link rel="stylesheet" href="static/css/svg-animation.css">
 {% endblock %}
 
 {% block body %}
 <div class="content">
     <canvas id="canvas"></canvas>
-    
+
     <div class="version fixed-bottom">
         <button type="button" class="btn btn-primary" id="liveToastBtn">Ver. 3.0 13/09 15:30<div id="app1"></div>
         </button>
@@ -531,9 +530,7 @@
                 </div>
             </div>
             <div class="godown">
-                <section id="section06" class="demo">
-                    <a href="#benefits"><span></span></a>
-                </section>
+                <a href="#benefits"><span></span></a>
             </div>
         </div>
     </section>
@@ -649,7 +646,8 @@
                         type="reset" onclick="location.href='/product/{{ product.name }}';">
                         <img class="product_img" src="{{ product.image_path }}" alt="">
                         <p class="product_title">{{ product.name }}</p>
-                        <p class="product_start_price">Status: <span style="color: #1fda11;">{{ product.status }}</span>
+                        <p class="product_start_price">Price from: <span style="color: #1fda11;">{{ product.sub_type["1"][0] }}€</span></p>
+                        <p class="product_start_price">Status: <span style="color: #1fda11;">{{ product.status }}</span></p>
                         </p>
                     </button>
                     {% endif %}
@@ -667,26 +665,9 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript" src="static/js/warpspeed.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var x = new WarpSpeed("canvas", { "speed": 10, "speedAdjFactor": 0, "density": 0.9, "shape": "square", "warpEffect": true, "warpEffectLength": 5, "depthFade": true, "starSize": 4, "backgroundColor": "#120d1f", "starColor": "#FFFFFF" });
-
-            var i = 10;
-            function decrementSpeed() {
-                setTimeout(function () {
-                    x.SPEED = i
-                    i--;
-                    if (i > 0) {
-                        decrementSpeed();
-                    }
-                }, 60)
-            }
-
-            decrementSpeed();
-        });
-
+        
         function changeIconFaq(el) {
             var element = document.querySelector(el);
             if (element.classList.contains("bi-chevron-down")) {

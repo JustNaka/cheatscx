@@ -63,12 +63,15 @@
         <tr class="table_head">
             <th></th>
             <th>ID</th>
-            <th>Nome</th>
-            <th>Nome Categoria</th>
+            <th>Name</th>
+            <th>Name Category</th>
             <th>Screens</th>
             <th>Requirements</th>
             <th>Path Image</th>
             <th>Status</th>
+            <th>Description</th>
+            <th>Sub Type</th>
+            <th>Features</th>
             <th>Action</th>
         </tr>
 
@@ -84,6 +87,9 @@
                     <th><input value="{{i.requirements}}" type="text" name="edit_requirements"></input></th>
                     <th><input value="{{i.image_path}}" type="text" name="edit_image_path"></input></th>
                     <th><input value="{{i.status}}" type="text" name="edit_status"></input></th>
+                    <th><input value="{{i.description}}" type="text" name="edit_description"></input></th>
+                    <th><input value="{{i.sub_type}}" type="text" name="edit_sub_type"></input></th>
+                    <th><input value="{{i.features}}" type="text" name="edit_features"></input></th>
                     <th><a href="{{ url_for('deladmin', delid=i.id, origin='admin', type='prod') }}" onclick="return confirm('Vuoi cancellare definitivamente {{ i.name }}?');" title="Cancella elemento"><i class="bi bi-trash"></i></a></th>
                     <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
                 </tr>
@@ -100,6 +106,9 @@
                 <th><input type="text" name="new_requirements" placeholder="Product Requirements"></input></th>
                 <th><input type="text" name="new_image_path" placeholder="Product Image Path"></input></th>
                 <th><input type="text" name="new_status" placeholder="Product Status"></input></th>
+                <th><input type="text" name="new_description" placeholder="Product Description"></input></th>
+                <th><input type="text" name="new_sub_type" placeholder="Product Sub Type"></input></th>
+                <th><input type="text" name="new_features" placeholder="Product Features"></input></th>
                 <th><button name="add_element" class="add_element" type="submit"><i class="bi bi-plus-circle"></i></button></th>
                 <th style="display: none;"><input value="prod" name="type" type="text"></input></th>
             </tr>

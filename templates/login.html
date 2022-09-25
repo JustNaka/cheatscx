@@ -13,6 +13,12 @@
         background-color: #0d0d0f;
     }
 
+    footer{
+        position: fixed !important;
+        bottom: 0px !important;
+        width: 100%;
+    }
+
     .login {
         background-color: #5a1f6b;
         border-radius: 50px;
@@ -72,17 +78,21 @@
     }
 </style>
 
-<div class="login">
-    <h1>LOGIN</h1>
+<canvas id="canvas"></canvas>
 
-    <form method="POST">
-        <p>Username</p>
-        <input type="text" name="username" id="username" placeholder="  Username">
-        <br>
-        <p>Password</p>
-        <input type="password" name="password" id="password" placeholder="  Password">
-        <br>
-        <input class="submit" type="submit" value="Invio">
-    </form>
+<div class="full">
+    <div class="login">
+        <h1>LOGIN</h1>
+
+        <form method="POST">
+            <p>Username</p>
+            <input type="text" name="username" id="username" placeholder="  Username">
+            <br>
+            <p>Password</p>
+            <input type="password" name="password" id="password" placeholder="  Password">
+            <br>
+            <input class="submit" type="submit" value="Invio">
+        </form>
+    </div>
 </div>
 {% endblock %}
